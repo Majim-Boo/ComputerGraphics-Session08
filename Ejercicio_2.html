@@ -1,0 +1,39 @@
+<canvas id='tablero' width=500 height=500></canvas>
+<script>
+	
+	function recorte(arr){
+		ctx.beginPath();
+		ctx.moveTo(arr[0],arr[1]);
+		ctx.lineTo(arr[2],arr[3]);
+		ctx.lineTo(arr[4],arr[5]);
+		ctx.clip();//para recortar
+	}
+
+	function triangulo(cd,colorBorde, colorRelleno, grosor){
+	ctx.beginPath();
+	ctx.strokeStyle = colorBorde;
+	ctx.fillStyle = colorRelleno;
+	ctx.lineWidth = grosor;
+	ctx.moveTo(cd[0],cd[1]);
+	ctx.lineTo(cd[2],cd[3]);
+	ctx.lineTo(cd[4],cd[5]);
+	ctx.closePath();
+	ctx.stroke();
+	ctx.fill();
+	}
+
+	var c = document.getElementById('tablero')
+	var ctx = c.getContext('2d')
+	
+	//se crea una variable para facilitar el entendimiento de los colores predefinidos
+	var [azul, rosado,amarillo] = ['rgba(68,114,196)', 'rgba(248,203,173)', 'rgba(255,255,0)'];
+
+	//se crean variables para simplificar la ubicación de los triángulos azul, rosado y amarillo
+	var trAzul=[3, 243, 21, 143, 420, 273], trRosado=[3, 323, 78, 390, 321, 51], trAmarillo=[300, 416, 395, 380, 197, 10];
+	
+	triangulo(trAzul, 'gray', azul);
+	triangulo(trRosado, 'gray', rosado);
+	recorte([300, 416, 395, 380, 197, 10]);//función de recorte para que se pueda dar el efecto en los triángulos
+	triangulo(trAmarillo, 'gray', amarillo);
+	triangulo(trAzul, 'gray', azul);
+</script>
