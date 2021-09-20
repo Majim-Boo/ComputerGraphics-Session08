@@ -1,0 +1,22 @@
+<canvas id='tablero' width=500 height=500></canvas>
+<script>
+	function triangulo(x1,y1,x2,y2,x3,y3, colorBorde, colorRelleno, grosor){
+	ctx.beginPath();
+	ctx.strokeStyle = colorBorde;
+	ctx.fillStyle = colorRelleno;
+	ctx.lineWidth = grosor;
+	ctx.moveTo(x1,y1);
+	ctx.lineTo(x2,y2);
+	ctx.lineTo(x3,y3);
+	ctx.closePath();
+	ctx.stroke();
+	ctx.fill();
+	}
+	var c= document.getElementById('tablero')
+	var ctx=c.getContext('2d')
+	
+	triangulo(3, 4, 50, 70, 35, 99, 'blue', 'orange', 3);
+	triangulo(3, 243, 21, 143, 420, 273, 'gray', 'rgba(68,114,196)');//triángulo azul
+	triangulo(3, 323, 78, 390, 321, 51, 'gray', 'rgba(248,203,173)');//triángulo rosado
+	triangulo(304, 16, 395, 380, 197, 10, 'gray', 'rgba(255,255,0)');//triángulo amarillo
+</script>
