@@ -22,17 +22,18 @@
 	ctx.fill();
 	}
 
-	function polygon(cd,colorBorde, colorRelleno, grosor){
+	function rectangulo(cd,colorBorde, colorRelleno, grosor){
 	ctx.beginPath();
 	ctx.strokeStyle = colorBorde;
 	ctx.fillStyle = colorRelleno;
 	ctx.lineWidth = grosor;
-	ctx.moveTo(a[0], a[1])
-	for (i=2; i < a.length; i+=2)
-		ctx.lineTo(a[i], a[i+1]);
-	ctx.closePath()
-	ctx.stroke()
-	ctx.fill()
+	ctx.moveTo(cd[0],cd[1]);
+	ctx.lineTo(cd[2],cd[3]);
+	ctx.lineTo(cd[4],cd[5]);
+  ctx.lineTo(cd[6],cd[7]);
+	ctx.closePath();
+	ctx.stroke();
+	ctx.fill();
 	}
 
 	var c = document.getElementById('tablero')
@@ -42,12 +43,12 @@
 	var [gris, naranja, amarillo, verde, azul] = ['rgba(195,195,195)', 'rgba(255,127,39)', 'rgba(255,242,0)', 'rgba(34, 177, 76)', 'rgba(0,162,232)'];
 
 	//Variable ubicación figuras predefinidas
-	var trGris=[119,17, 392,167, 134,300], rectNaranja=[16,30, 16,77, 371,77, 371,30], rectAmarillo=[43,14, 86,15, 86,306, 43,306];
+	var trGris=[119,17, 392,167, 134,300], rectNaranja=[16,30, 16,77, 371,77, 371,30], rectAmarillo=[43,14, 86,15, 86,306, 43,306], rectAzul=[18,235, 19,275, 362,275, 362,235], rectVerde=[316,13, 355,13, 356,308, 316,308];
 	
-	triangulo(trGris, naranja, gris);
-	polygon(rectNaranja, naranja, naranja);
-	
-	recorte([300, 416, 395, 380, 197, 10]);//función de recorte para que se pueda dar el efecto en los triángulos
-	
-	
+	rectangulo(rectVerde, verde, verde);
+  rectangulo(rectAzul, amarillo, azul);
+  rectangulo(rectAmarillo, amarillo, amarillo);
+  triangulo(trGris, naranja, gris);
+	rectangulo(rectNaranja, naranja, naranja);
+  		
 </script>
