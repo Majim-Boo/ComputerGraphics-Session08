@@ -1,0 +1,62 @@
+
+<!-- ¡¡¡¡NOTA IMPORTANTE!!!: La corrección de este ejercicio fue autorizada por el profesor, con fecha de entrega para el 27-09-2021, para subirlo como archivo aparte de la tarea de la sesion 08 -->
+
+<canvas id='tablero' width=450 height=450></canvas>
+<script>
+	<!--El efecto de recorte hace que todo lo que esté de ahí en adelante quede delimitado por el recorte usado. Esto hasta que haya otro recorte -->
+	function recorte(arr){
+		ctx.beginPath();
+		ctx.moveTo(arr[0],arr[1]);
+		for (var i = 2; i <arr.length; i+=2)
+			ctx.lineTo(arr[i], arr[i+1]);
+		ctx.clip();//para recortar
+	}
+
+	function triangulo(cd,colorBorde, colorRelleno, grosor){
+	ctx.beginPath();
+	ctx.strokeStyle = colorBorde;
+	ctx.fillStyle = colorRelleno;
+	ctx.lineWidth = grosor;
+	ctx.moveTo(cd[0],cd[1]);
+	ctx.lineTo(cd[2],cd[3]);
+	ctx.lineTo(cd[4],cd[5]);
+	ctx.closePath();
+	ctx.stroke();
+	ctx.fill();
+	}
+
+	function rectangulo(cd,colorBorde, colorRelleno, grosor){
+	ctx.beginPath();
+	ctx.strokeStyle = colorBorde;
+	ctx.fillStyle = colorRelleno;
+	ctx.lineWidth = grosor;
+	ctx.moveTo(cd[0],cd[1]);
+	ctx.lineTo(cd[2],cd[3]);
+	ctx.lineTo(cd[4],cd[5]);
+ 	ctx.lineTo(cd[6],cd[7]);
+	ctx.closePath();
+	ctx.stroke();
+	ctx.fill();
+	}
+
+	var c = document.getElementById('tablero')
+	var ctx = c.getContext('2d')
+	
+	//Variable de arreglo para colores predefinidos
+	var [gris, naranja, amarillo, verde, azul] = ['rgba(195,195,195)', 'rgba(255,127,39)', 'rgba(255,242,0)', 'rgba(34, 177, 76)', 'rgba(0,162,232)'];
+
+	//Variable de arreglos de la ubicación de figuras predefinidas
+	var rectNaranja=[16,30, 16,77, 371,77, 371,30], rectAmarillo=[43,14, 86,15, 86,306, 43,306], rectAzul=[18,235, 19,275, 362,275, 362,235], rectVerde=[316,13, 355,13, 356,308, 316,308];
+	var trGris=[119,17, 392,167, 134,300];
+	  rectangulo(rectVerde, verde, verde);//Rectangulo verde
+  	rectangulo(rectAzul, amarillo, azul, 5);//Rectangulo azul
+  	rectangulo(rectAmarillo, amarillo, amarillo);//Rectangulo amarillo
+	  triangulo(trGris, naranja, gris); //Triangulo
+	  rectangulo(rectNaranja, naranja, naranja, 1); //Rectangulo naranja
+  	recorte(rectNaranja);
+
+	//NOTA IMPORTANTE: Desde esta linea empieza la correccion
+  	rectangulo(rectVerde, verde, verde); //Rectangulo verde recortado
+	  recorte(rectVerde);
+
+</script>
